@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover furniture, home décor, construction and lifestyle products at the Gharkul Exhibition in Belagavi." />
+  <title>Gharkul Exhibition | Belagavi</title>
+  <style>
+    :root {
+      --green: #243b32;
+      --green-2: #355448;
+      --cream: #f7f2e9;
+      --ivory: #fffdf8;
+      --gold: #c58b53;
+      --ink: #242821;
+      --muted: #6d716a;
+      --line: #e8e0d4;
+      --shadow: 0 18px 45px rgba(36, 59, 50, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--ivory); font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, .btn { cursor: pointer; }
+    .container { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+    .announcement { background: var(--green); color: #fff; text-align: center; padding: 8px 16px; font-size: .86rem; letter-spacing: .02em; }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(255,253,248,.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(232,224,212,.8); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.03em; font-size: 1.12rem; color: var(--green); }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; background: var(--green); color: #fff; border-radius: 14px 14px 14px 4px; font-family: Georgia, serif; font-size: 1.45rem; }
+    .brand small { display: block; color: var(--muted); font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: .92rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--gold); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: transparent; padding: 8px 12px; border-radius: 10px; color: var(--green); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 19px; border-radius: 999px; border: 1px solid transparent; font-weight: 750; transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover { background: var(--green-2); }
+    .btn-light { background: var(--ivory); color: var(--green); }
+    .btn-outline { border-color: rgba(255,255,255,.55); color: #fff; background: transparent; }
+    .hero { position: relative; overflow: hidden; background: var(--green); color: #fff; }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; min-height: 570px; align-items: center; gap: 35px; padding-top: 48px; padding-bottom: 48px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; font-size: .78rem; letter-spacing: .17em; font-weight: 800; }
+    h1 { margin: 15px 0 20px; font-size: clamp(2.6rem, 5vw, 4.8rem); line-height: 1.02; letter-spacing: -.055em; max-width: 680px; }
+    h1 em { color: #e8c59e; font-family: Georgia, serif; font-weight: 500; }
+    .hero p { max-width: 560px; color: #e2e7e1; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
+    .event-meta { display: flex; flex-wrap: wrap; gap: 20px; color: #e6e9e4; font-size: .92rem; }
+    .event-meta span { display: flex; align-items: center; gap: 8px; }
+    .hero-visual { position: relative; min-height: 390px; }
+    .hero-photo { position: absolute; inset: 0 0 20px 20px; width: calc(100% - 20px); height: calc(100% - 20px); object-fit: cover; border-radius: 48% 48% 20px 20px; border: 8px solid rgba(255,255,255,.12); }
+    .floating-card { position: absolute; bottom: 0; left: 0; padding: 18px 20px; border-radius: 18px; background: var(--ivory); color: var(--green); box-shadow: var(--shadow); max-width: 230px; }
+    .floating-card strong { display: block; font-size: 1.02rem; }
+    .floating-card span { color: var(--muted); font-size: .84rem; }
+    .section { padding: 86px 0; }
+    .section-soft { background: var(--cream); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+    .section-heading h2, .about-copy h2 { margin: 8px 0 0; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; letter-spacing: -.045em; color: var(--green); }
+    .section-heading p { max-width: 460px; color: var(--muted); margin: 0; }
+    .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .category-card { position: relative; min-height: 245px; overflow: hidden; border-radius: 20px; color: #fff; background: #35483e; isolation: isolate; }
+    .category-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .5s; }
+    .category-card:hover img { transform: scale(1.06); }
+    .category-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,26,21,.88), rgba(15,26,21,.03) 80%); z-index: -1; }
+    .category-content { position: absolute; left: 22px; right: 22px; bottom: 20px; }
+    .category-content h3 { margin: 0 0 4px; font-size: 1.35rem; }
+    .category-content p { margin: 0; color: #e4e9e3; font-size: .9rem; }
+    .about-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 55px; align-items: center; }
+    .about-image { width: 100%; height: 430px; object-fit: cover; border-radius: 24px; box-shadow: var(--shadow); }
+    .about-copy p { color: var(--muted); }
+    .feature-list { list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 13px; }
+    .feature-list li { display: flex; gap: 12px; align-items: flex-start; }
+    .check { display: grid; place-items: center; flex: 0 0 26px; height: 26px; background: #e4eadf; color: var(--green); border-radius: 50%; font-weight: 900; }
+    .countdown { display: flex; gap: 10px; margin: 25px 0; }
+    .count-box { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 12px 14px; min-width: 70px; text-align: center; }
+    .count-box strong { display: block; font-size: 1.5rem; line-height: 1.2; }
+    .count-box small { font-size: .7rem; color: #d6ddd5; text-transform: uppercase; letter-spacing: .08em; }
+    .exhibitor-tools { display: flex; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+    .field { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); outline: none; }
+    .field:focus { border-color: var(--green-2); box-shadow: 0 0 0 3px rgba(53,84,72,.12); }
+    .search-field { flex: 1 1 260px; }
+    .filter-field { flex: 0 1 220px; }
+    .exhibitor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .exhibitor-card { border: 1px solid var(--line); border-radius: 18px; padding: 22px; background: #fff; }
+    .exhibitor-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--cream); display: grid; place-items: center; font-size: 1.45rem; margin-bottom: 16px; }
+    .exhibitor-card h3 { margin: 0 0 5px; color: var(--green); }
+    .exhibitor-card p { margin: 0 0 12px; color: var(--muted); font-size: .92rem; }
+    .stall { color: #9a693c; font-size: .82rem; font-weight: 800; }
+    .tag { display: inline-block; padding: 5px 9px; border-radius: 999px; background: #edf0e9; color: var(--green); font-size: .75rem; font-weight: 750; }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .visit-card { background: #fff; border: 1px solid var(--line); padding: 27px; border-radius: 20px; }
+    .visit-card h3 { color: var(--green); margin-top: 0; }
+    .visit-row { display: flex; justify-content: space-between; gap: 15px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .visit-row:last-child { border-bottom: 0; }
+    .visit-row span:first-child { color: var(--muted); }
+    .visit-row span:last-child { text-align: right; font-weight: 700; }
+    .plan-layout { display: grid; grid-template-columns: 1fr .8fr; gap: 28px; align-items: center; }
+    .floor-plan { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 20px; }
+    .stall-tile { min-height: 92px; padding: 10px; border: 1px solid #d7dfd5; background: #edf2eb; color: var(--green); border-radius: 12px; text-align: center; display: grid; place-content: center; gap: 3px; font-size: .83rem; }
+    .stall-tile strong { font-size: 1rem; }
+    .stall-tile:hover, .stall-tile:focus { background: #dce8d9; outline: 2px solid var(--green-2); }
+    .stall-tile.entrance { background: #f4e5d2; border-color: #e9caa6; }
+    .plan-copy p { color: var(--muted); }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; grid-template-rows: 180px 180px; gap: 14px; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+    .gallery-grid img:first-child { grid-row: span 2; }
+    .register-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: start; }
+    .register-copy { color: #e4e9e3; }
+    .register-copy h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; margin: 10px 0 18px; letter-spacing: -.04em; }
+    .register-panel { background: #fff; color: var(--ink); padding: 28px; border-radius: 22px; box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .form-group { display: grid; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: .86rem; font-weight: 750; color: var(--green); }
+    .form-note { color: var(--muted); font-size: .8rem; margin: 12px 0; }
+    .success-message { display: none; margin-top: 16px; padding: 14px; border-radius: 12px; background: #e8f2e5; color: #21442d; }
+    .faq-list { max-width: 850px; margin: 0 auto; }
+    details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    summary { cursor: pointer; font-weight: 750; color: var(--green); }
+    details p { color: var(--muted); margin-bottom: 0; }
+    .contact-strip { display: flex; justify-content: space-between; align-items: center; gap: 25px; background: #e9dfd0; border-radius: 22px; padding: 30px; margin-top: 45px; }
+    .contact-strip h3 { margin: 0 0 5px; color: var(--green); font-size: 1.45rem; }
+    .contact-strip p { margin: 0; color: var(--muted); }
+    footer { background: #1d3028; color: #fff; padding: 42px 0 22px; }
+    .footer-top { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; padding-bottom: 30px; }
+    .footer-top p { max-width: 390px; color: #cbd5cc; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+    .footer-links a { color: #e4e9e3; font-size: .9rem; }
+    .copyright { border-top: 1px solid rgba(255,255,255,.15); padding-top: 18px; color: #b9c4bb; font-size: .82rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .toast { position: fixed; bottom: 20px; right: 20px; z-index: 50; background: var(--green); color: #fff; padding: 13px 18px; border-radius: 12px; box-shadow: var(--shadow); display: none; max-width: 320px; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 14px; font-size: .85rem; }
+      .hero-grid { grid-template-columns: 1fr  .85fr; }
+      .category-grid, .exhibitor-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .plan-layout, .register-wrap { grid-template-columns: 1fr; }
+      .about-image { height: 330px; }
+      .register-copy { max-width: 650px; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 28px, 540px); }
+      .nav { min-height: 68px; flex-wrap: wrap; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; width: 100%; padding: 0 0 16px; flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 0; border-top: 1px solid var(--line); }
+      .nav-links .btn { margin-top: 10px; }
+      .hero-grid { grid-template-columns: 1fr; padding-top: 55px; }
+      .hero-visual { min-height: 310px; margin-top: 8px; }
+      .hero-photo { inset-left: 0; left: 10px; width: calc(100% - 10px); }
+      .section { padding: 62px 0; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .category-grid, .exhibitor-grid, .visit-grid { grid-template-columns: 1fr; }
+      .category-card { min-height: 230px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 140px; }
+      .gallery-grid img:first-child { grid-row: auto; grid-column: span 2; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: auto; }
+      .contact-strip { align-items: flex-start; flex-direction: column; padding: 24px; }
+      .countdown { gap: 6px; }
+      .count-box { min-width: 60px; padding: 10px 8px; }
+      .count-box strong { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">A celebration of homes, living and new discoveries · Belagavi, Karnataka</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Gharkul Exhibition home">
+        <span class="brand-mark">G</span>
+        <span>GHARKUL <small>Exhibition · Belagavi</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰ Menu</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#categories">Categories</a><a href="#exhibitors">Exhibitors</a><a href="#visit">Visitor Info</a><a href="#faq">FAQs</a>
+        <a class="btn btn-primary" href="#register">Register Interest ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Discover something for every home</div>
+          <h1>Inspiration for your home. <em>All in one place.</em></h1>
+          <p>Explore ideas, products and possibilities across furniture, décor, construction, lighting and everyday living at the Gharkul Exhibition.</p>
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#register">Register Your Interest ↗</a>
+            <a class="btn btn-outline" href="#categories">Explore Categories ↓</a>
+          </div>
+          <div class="event-meta">
+            <span>📍 CPED Ground, Belagavi</span>
+            <span>📅 Dates to be announced</span>
+          </div>
+          <div class="countdown" aria-label="Event countdown">
+            <div class="count-box"><strong id="days">--</strong><small>Days</small></div>
+            <div class="count-box"><strong id="hours">--</strong><small>Hours</small></div>
+            <div class="count-box"><strong id="minutes">--</strong><small>Minutes</small></div>
+            <div class="count-box"><strong id="seconds">--</strong><small>Seconds</small></div>
+          </div>
+          <small style="color:#cbd5cc">Countdown will activate once the event date is announced.</small>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=85" alt="Warm, contemporary living room with elegant furniture and décor" />
+          <div class="floating-card"><strong>Ideas meet inspiration</strong><span>Explore products and discover fresh possibilities for your space.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <img class="about-image" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85" alt="Contemporary home interior with natural textures" loading="lazy" />
+        <div class="about-copy">
+          <div class="eyebrow">About the exhibition</div>
+          <h2>Ideas for living, building and making a house feel like home.</h2>
+          <p>Gharkul Exhibition brings home, construction, furniture and lifestyle offerings together in one place. Visitors can browse products, compare ideas, meet exhibitors and find inspiration for their next project.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span><span><strong>Explore a variety of categories</strong><br />From furniture and lighting to home improvement essentials.</span></li>
+            <li><span class="check">✓</span><span><strong>Meet brands and exhibitors</strong><br />Learn about products and ask questions directly.</span></li>
+            <li><span class="check">✓</span><span><strong>Get inspired</strong><br />Discover ideas for renovations, new homes and everyday living.</span></li>
+          </ul>
+          <a class="btn btn-primary" href="#exhibitors">Discover Exhibitors ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <div><div class="eyebrow">Explore the showcase</div><h2>Find your kind of inspiration.</h2></div>
+          <p>Browse popular product categories. Final exhibitors and product availability will be confirmed by the event organizers.</p>
+        </div>
+        <div class="category-grid">
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Modern sofa and living room furniture" loading="lazy" /><div class="category-content"><h3>Furniture & Interiors</h3><p>Comfort, function and thoughtful design.</p></div></article>
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Stylish home décor and accessories" loading="lazy" /><div class="category-content"><h3>Home Décor</h3><p>Details that bring your space to life.</p></div></article>
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Beautifully designed residential interior" loading="lazy" /><div class="category-content"><h3>Construction & Building</h3><p>Explore materials and home solutions.</p></div></article>
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Decorative pendant lighting" loading="lazy" /><div class="category-content"><h3>Lighting</h3><p>Layered lighting for every mood.</p></div></article>
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Modern kitchen and household design" loading="lazy" /><div class="category-content"><h3>Kitchen & Household</h3><p>Useful ideas for everyday routines.</p></div></article>
+          <article class="category-card"><img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=800&q=80" alt="Elegant lifestyle and home styling" loading="lazy" /><div class="category-content"><h3>Lifestyle & More</h3><p>Discover products for modern living.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="exhibitors">
+      <div class="container">
+        <div class="section-heading">
+          <div><div class="eyebrow">Meet the showcase</div><h2>Exhibitor directory</h2></div>
+          <p>Sample listings are shown to demonstrate the website. They are not confirmed exhibitors and should be replaced with verified event information.</p>
+        </div>
+        <div class="exhibitor-tools">
+          <input class="field search-field" id="exhibitorSearch" type="search" placeholder="Search by name or product..." aria-label="Search exhibitors" />
+          <select class="field filter-field" id="categoryFilter" aria-label="Filter by category">
+            <option value="all">All categories</option><option>Furniture</option><option>Home Décor</option><option>Construction</option><option>Lighting</option><option>Kitchen</option><option>Lifestyle</option>
+          </select>
+        </div>
+        <div class="exhibitor-grid" id="exhibitorGrid">
+          <article class="exhibitor-card" data-category="Furniture" data-search="sample furniture studio sofa beds furniture"><div class="exhibitor-icon">🛋️</div><span class="tag">Furniture</span><h3>Sample Furniture Studio</h3><p>Furniture ideas for living rooms, bedrooms and more.</p><span class="stall">Sample stall · F-01</span></article>
+          <article class="exhibitor-card" data-category="Home Décor" data-search="sample decor house home accessories decor"><div class="exhibitor-icon">🪴</div><span class="tag">Home Décor</span><h3>Sample Décor House</h3><p>Decorative accents and finishing touches for your home.</p><span class="stall">Sample stall · D-02</span></article>
+          <article class="exhibitor-card" data-category="Construction" data-search="sample build solutions construction materials building"><div class="exhibitor-icon">🏠</div><span class="tag">Construction</span><h3>Sample Build Solutions</h3><p>Building materials and home improvement concepts.</p><span class="stall">Sample stall · C-03</span></article>
+          <article class="exhibitor-card" data-category="Lighting" data-search="sample lighting gallery lamps lights"><div class="exhibitor-icon">💡</div><span class="tag">Lighting</span><h3>Sample Lighting Gallery</h3><p>Lighting options for ambience and practical use.</p><span class="stall">Sample stall · L-04</span></article>
+          <article class="exhibitor-card" data-category="Kitchen" data-search="sample kitchen living appliances kitchen household"><div class="exhibitor-icon">🍽️</div><span class="tag">Kitchen</span><h3>Sample Kitchen Living</h3><p>Kitchen essentials and ideas for daily living.</p><span class="stall">Sample stall · K-05</span></article>
+          <article class="exhibitor-card" data-category="Lifestyle" data-search="sample everyday lifestyle home products"><div class="exhibitor-icon">✨</div><span class="tag">Lifestyle</span><h3>Sample Everyday Living</h3><p>Useful products and inspiration for modern homes.</p><span class="stall">Sample stall · S-06</span></article>
+        </div>
+        <p id="noResults" style="display:none;color:var(--muted);padding:20px 0">No sample exhibitors match your search. Try another term or category.</p>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="visit">
+      <div class="container">
+        <div class="section-heading">
+          <div><div class="eyebrow">Plan ahead</div><h2>Visitor information</h2></div>
+          <p>Keep this information updated as soon as the organizers confirm event details.</p>
+        </div>
+        <div class="visit-grid">
+          <div class="visit-card">
+            <h3>Event essentials</h3>
+            <div class="visit-row"><span>Event</span><span>Gharkul Exhibition</span></div>
+            <div class="visit-row"><span>Venue</span><span>CPED Ground, Belagavi</span></div>
+            <div class="visit-row"><span>Dates</span><span>To be announced</span></div>
+            <div class="visit-row"><span>Timings</span><span>To be announced</span></div>
+            <div class="visit-row"><span>Entry fee</span><span>To be announced</span></div>
+          </div>
+          <div class="visit-card">
+            <h3>Before you visit</h3>
+            <div class="visit-row"><span>Parking</span><span>Confirm with organizers</span></div>
+            <div class="visit-row"><span>Accessibility</span><span>Details to be confirmed</span></div>
+            <div class="visit-row"><span>Food & facilities</span><span>Details to be confirmed</span></div>
+            <div class="visit-row"><span>Directions</span><span><a href="https://www.google.com/maps/search/?api=1&query=CPED+Ground+Belagavi" target="_blank" rel="noopener noreferrer" style="color:#9a693c;text-decoration:underline">Open map ↗</a></span></div>
+            <p class="form-note">Please verify venue and visitor arrangements with the event organizer before travelling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="floorplan">
+      <div class="container plan-layout">
+        <div>
+          <div class="eyebrow">Explore the venue</div>
+          <h2 style="font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;letter-spacing:-.045em;color:var(--green)">A simple sample floor plan.</h2>
+          <p style="color:var(--muted)">Select a sample stall to see its category. This is a demonstration layout, not the official venue map. Replace it with the organizer-approved floor plan and stall assignments.</p>
+          <div class="visit-card" style="padding:18px"><strong id="stallInfo">Choose a stall</strong><p id="stallDescription" style="margin-bottom:0;color:var(--muted)">Stall details will appear here.</p></div>
+        </div>
+        <div class="floor-plan" aria-label="Demonstration exhibition floor plan">
+          <button class="stall-tile" data-stall="F-01" data-description="Sample furniture display."><strong>F-01</strong>Furniture</button>
+          <button class="stall-tile" data-stall="D-02" data-description="Sample home décor display."><strong>D-02</strong>Décor</button>
+          <button class="stall-tile" data-stall="C-03" data-description="Sample construction products."><strong>C-03</strong>Building</button>
+          <button class="stall-tile" data-stall="L-04" data-description="Sample lighting display."><strong>L-04</strong>Lighting</button>
+          <button class="stall-tile" data-stall="K-05" data-description="Sample kitchen and household products."><strong>K-05</strong>Kitchen</button>
+          <button class="stall-tile" data-stall="S-06" data-description="Sample lifestyle products."><strong>S-06</strong>Lifestyle</button>
+          <div class="stall-tile" style="background:#f7f2e9"><strong>INFO</strong>Help Desk</div>
+          <div class="stall-tile entrance"><strong>ENTRANCE</strong>Sample only</div>
+          <div class="stall-tile" style="background:#f7f2e9"><strong>EXIT</strong>Sample only</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div><div class="eyebrow">A glimpse of the experience</div><h2>Spaces, details and inspiration.</h2></div>
+          <p>Illustrative interior and lifestyle images. Replace these with authorized Gharkul Exhibition photos when available.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=80" alt="Bright contemporary living space" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=700&q=80" alt="Home décor and furniture details" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Modern interior design" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Elegant residential interiors" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="Warm living room styling" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="register" style="background:var(--green);color:#fff">
+      <div class="container register-wrap">
+        <div class="register-copy">
+          <div class="eyebrow">Stay in the loop</div>
+          <h2>Be among the first to hear the latest.</h2>
+          <p>Share your details to register your interest in the exhibition. Once official dates and visitor registration are confirmed, the organizer can contact interested visitors with updates.</p>
+          <p>🔔 Get event announcements<br />🛍️ Discover exhibitor categories<br />📍 Plan your visit in advance</p>
+          <small style="color:#cbd5cc">Demo form: this standalone HTML page does not send or store submissions.</small>
+        </div>
+        <form class="register-panel" id="registrationForm">
+          <h3 style="margin:0 0 5px;color:var(--green);font-size:1.45rem">Register your interest</h3>
+          <p style="margin:0 0 22px;color:var(--muted);font-size:.9rem">Fields marked * are required.</p>
+          <div class="form-grid">
+            <div class="form-group"><label for="fullName">Full name *</label><input class="field" id="fullName" name="fullName" required autocomplete="name" placeholder="Your name" /></div>
+            <div class="form-group"><label for="mobile">Mobile number *</label><input class="field" id="mobile" name="mobile" type="tel" required pattern="[0-9+\-\s()]{10,16}" autocomplete="tel" placeholder="Your contact number" /></div>
+            <div class="form-group full"><label for="email">Email address *</label><input class="field" id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" /></div>
+            <div class="form-group"><label for="visitDate">Preferred visit date</label><input class="field" id="visitDate" name="visitDate" type="date" /></div>
+            <div class="form-group"><label for="visitors">Number of visitors</label><select class="field" id="visitors" name="visitors"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+            <div class="form-group full"><label for="interest">What are you interested in?</label><select class="field" id="interest" name="interest"><option>All categories</option><option>Furniture & Interiors</option><option>Home Décor</option><option>Construction & Building</option><option>Lighting</option><option>Kitchen & Household</option><option>Lifestyle</option></select></div>
+            <div class="form-group full"><label style="display:flex;gap:9px;align-items:flex-start;font-weight:500;color:var(--muted)"><input id="consent" type="checkbox" required style="margin-top:5px" /> I agree to be contacted by the event organizer about exhibition updates. *</label></div>
+            <div class="form-group full"><button class="btn btn-primary" type="submit" style="width:100%">Submit Interest ↗</button></div>
+          </div>
+          <p class="form-note">Your details are not transmitted anywhere in this demo. Connect a secure backend or form service before collecting real visitor information.</p>
+          <div class="success-message" id="successMessage" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-heading" style="justify-content:center;text-align:center">
+          <div><div class="eyebrow">Need to know</div><h2>Frequently asked questions</h2><p style="margin:14px auto 0">Key information for planning your visit.</p></div>
+        </div>
+        <div class="faq-list">
+          <details><summary>When will the exhibition take place?</summary><p>The official dates have not been added to this demo website yet. Please check with the event organizer for confirmed dates and timings.</p></details>
+          <details><summary>Where is the event venue?</summary><p>The planned venue shown on this page is CPED Ground, Belagavi, Karnataka. Please confirm the venue details with the organizer before travelling.</p></details>
+          <details><summary>Is there an entry fee?</summary><p>Entry fees have not yet been confirmed. This website should be updated once the organizer announces the policy.</p></details>
+          <details><summary>Can I register online?</summary><p>You can test the interest form on this demo page. It displays a local confirmation message but does not save or transmit data. A backend or form service is required for real registration.</p></details>
+          <details><summary>Which product categories can I explore?</summary><p>Planned categories include furniture, interiors, home décor, construction, lighting, kitchen products, household essentials and lifestyle offerings. Final exhibitors may vary.</p></details>
+          <details><summary>How can a business become an exhibitor?</summary><p>Contact the event organizer directly to ask about stall availability, pricing, eligibility and exhibitor registration.</p></details>
+        </div>
+        <div class="contact-strip">
+          <div><h3>Have a question?</h3><p>Contact the organizer for confirmed event and exhibitor information.</p></div>
+          <a class="btn btn-primary" href="https://www.google.com/search?q=Gharkul+Exhibition+Belgaum+official+contact" target="_blank" rel="noopener noreferrer">Find Organizer Details ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div><a class="brand" href="#home" style="color:#fff"><span class="brand-mark" style="background:#c58b53">G</span><span>GHARKUL <small style="color:#cbd5cc">Exhibition · Belagavi</small></span></a><p>A public exhibition concept bringing home, construction, furniture and lifestyle inspiration together.</p></div>
+        <div class="footer-links"><a href="#about">About</a><a href="#categories">Categories</a><a href="#exhibitors">Exhibitors</a><a href="#visit">Visitor Info</a><a href="#register">Register Interest</a><a href="#faq">FAQs</a></div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> Gharkul Exhibition · Website concept</span><span>Event details and exhibitor listings must be verified before publication.</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Mobile navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Exhibitor search and category filter
+    const searchInput = document.getElementById('exhibitorSearch');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const exhibitorCards = [...document.querySelectorAll('.exhibitor-card')];
+    function filterExhibitors() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      let shown = 0;
+      exhibitorCards.forEach(card => {
+        const matchesText = (card.dataset.search + ' ' + card.textContent).toLowerCase().includes(query);
+        const matchesCategory = category === 'all' || card.dataset.category === category;
+        const visible = matchesText && matchesCategory;
+        card.style.display = visible ? '' : 'none';
+        if (visible) shown++;
+      });
+      document.getElementById('noResults').style.display = shown ? 'none' : 'block';
+    }
+    searchInput.addEventListener('input', filterExhibitors);
+    categoryFilter.addEventListener('change', filterExhibitors);
+
+    // Demonstration floor plan
+    document.querySelectorAll('.stall-tile[data-stall]').forEach(tile => {
+      tile.addEventListener('click', () => {
+        document.getElementById('stallInfo').textContent = 'Stall ' + tile.dataset.stall;
+        document.getElementById('stallDescription').textContent = tile.dataset.description + ' This is sample information, not an official assignment.';
+      });
+    });
+
+    // Countdown: set a confirmed date in YYYY-MM-DD format to activate.
+    const EVENT_DATE = ''; // Example: '2027-01-15T10:00:00+05:30'
+    function updateCountdown() {
+      if (!EVENT_DATE) return;
+      const diff = new Date(EVENT_DATE).getTime() - Date.now();
+      if (Number.isNaN(diff) || diff <= 0) {
+        ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = Math.floor((diff % 86400000) / 3600000);
+      document.getElementById('minutes').textContent = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('seconds').textContent = Math.floor((diff % 60000) / 1000);
+    }
+    updateCountdown();
+    if (EVENT_DATE) setInterval(updateCountdown, 1000);
+
+    // Demo-only interest form. No data is sent or stored.
+    document.getElementById('registrationForm').addEventListener('submit', event => {
+      event.preventDefault();
+      if (!event.currentTarget.reportValidity()) return;
+      const name = document.getElementById('fullName').value.trim();
+      const msg = document.getElementById('successMessage');
+      msg.textContent = `Thank you, ${name}! Your demo interest form was completed. No information has been sent or saved.`;
+      msg.style.display = 'block';
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      event.currentTarget.reset();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
